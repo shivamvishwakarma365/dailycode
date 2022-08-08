@@ -1,0 +1,30 @@
+int sub(int i,int s,vector<int>arr,int n,int k){
+    
+    if(s>k)return 0;
+    if(i==n){
+        if(s==k){
+            return 1;
+        }else{
+            return 0;
+        }
+        
+    }
+ 
+    s+=arr[i];
+    int l=sub(i+1,s,arr,n,k);
+    s-=arr[i];
+    
+    int r=sub(i+1,s,arr,n,k);
+    return l+r;
+}
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+   
+    vector<int>ds;
+   
+    int a=sub(0,0,arr,n,k);
+    if(a>0){
+        return true;
+    }else{
+        return false;
+    }
+}
