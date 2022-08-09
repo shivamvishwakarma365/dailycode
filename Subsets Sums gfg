@@ -1,0 +1,17 @@
+void fun(int ind,int sum,vector<int>&arr,vector<int>&subset,int n){
+    if(ind==n){
+        subset.push_back(sum);
+        return;
+    }
+    //pick
+    fun(ind+1,sum+arr[ind],arr,subset,n);
+    //not pic
+    fun(ind+1,sum,arr,subset,n);
+    
+}
+    vector<int> subsetSums(vector<int> arr, int n)
+    {
+        vector<int>subset;
+        fun(0,0,arr,subset,n);
+        return subset;
+    }
