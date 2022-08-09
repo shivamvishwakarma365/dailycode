@@ -1,0 +1,34 @@
+class Solution {
+public:
+    
+    void peru(vector<int>&nums,vector<vector<int>>&ans,vector<int>&ds,int hisab[]){
+        if(ds.size()==nums.size()){
+        
+            ans.push_back(ds);
+            return;
+        }
+        for(int i=0;i<nums.size();i++){
+            if(hisab[i]==0){
+                //add the element  
+                ds.push_back(nums[i]);
+                //one used tick the frequency
+                hisab[i]=1;
+                peru(nums,ans,ds,hisab);
+                //one came back remove the frequency
+                hisab[i]=0;
+                //remove the element
+                ds.pop_back();
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>ds;
+        int n=(int)nums.size();
+        //for frequency check purpose
+        int hisab[n];
+        for(int i=0;i<n;i++)hisab[i]=0;
+        peru(nums,ans,ds,hisab);
+        return ans;
+    }
+};
