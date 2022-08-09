@@ -8,11 +8,15 @@ public:
             return;
         }
         //pick up the element
+       
         if(nums[i]<=k){
+        //take it
             ds.push_back(nums[i]);
             sub(i,k-nums[i],nums,ans,ds);
+            //if not then do not pick shit
             ds.pop_back();
         }
+        //not take part
         sub(i+1,k,nums,ans,ds);
         
     }
