@@ -1,0 +1,32 @@
+class Solution {
+public:
+   
+    void gameOfLife(vector<vector<int>>& boards) {
+        vector<int>dx={0,0,1,1,1,-1,-1,-1};
+        vector<int>dy={1,-1,1,-1,0,0,1,-1};
+        for(int i=0;i<boards.size();i++){
+            for(int j=0;j<boards[0].size();j++){
+                int count=0;
+                for(int k=0;k<8;k++){
+                    int x=dx[k]+i;
+                    int y=dy[k]+j;
+                    if(x>=0 && x<boards.size() && y>=0 && y<boards[0].size() && abs(boards[x][y])==1){
+                        count++;
+                    }
+                }
+                if(boards[i][j]==1 && (count<2 || count>3))boards[i][j]=-1;
+                if(boards[i][j]==0 && count==3)boards[i][j]=2;
+            }
+            
+        }
+        for(int i=0;i<boards.size();i++){
+            for(int j=0;j<boards[0].size();j++){
+                if(boards[i][j]>=1){
+                    boards[i][j]=1;
+                }else{
+                    boards[i][j]=0;
+                }  
+            }
+        }
+    }
+};
