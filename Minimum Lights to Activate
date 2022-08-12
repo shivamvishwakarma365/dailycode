@@ -1,0 +1,23 @@
+int Solution::solve(vector<int> &A, int B) {
+    int n=A.size();
+    int i=0;
+    int count=0;
+    while(i<n){
+        int left=max(i-B+1,0);
+        int right=min(i+B-1,n-1);
+        bool flag=false;
+        while(right>=left){
+            if(A[right]==1){
+                flag=true;
+                break;
+            }else{
+                right--;
+            }
+        }
+        if(flag!=true)return -1;
+        count++;
+        i=right+B;
+        
+    }
+    return count;
+}
