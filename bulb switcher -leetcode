@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int bulbSwitch(int n) {
+        //Work out on pen and paper to realize this formula
+        return floor(sqrt(n));
+    }
+};
+//for understamding the concept behind it ::
+//follow this
+https://youtu.be/lyZhLR292yY
