@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n=nums.size();
+        if(n<3){
+            return n;
+        }
+        int x=2;
+        for(int i=2;i<n;i++){
+            if(nums[i]!=nums[x-2])nums[x++]=nums[i];
+        }
+        return x;
+    }
+};
+//simple concept
+//as it has to atleast one  duplicate or no duplicate to be considered as no duplicate
+//-.-
