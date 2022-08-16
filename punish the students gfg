@@ -1,0 +1,24 @@
+int shouldPunish (int roll[], int marks[], int n, double avg)
+    {
+        int count=0;
+        for(int i=0;i<n-1;i++){
+            for(int j=0;j<n-i-1;j++)
+            if(roll[j+1]<roll[j]){
+                swap(roll[j+1],roll[j]);
+                count++;
+            }
+        }
+        
+        int sum=0;
+        int newavg;
+        for(int k=0;k<n;k++){
+            sum+=marks[k];
+        }
+        sum-=count;
+        newavg=sum/n;
+        
+        if(newavg>avg){
+            return 1;
+        }
+    return 0;
+    }
