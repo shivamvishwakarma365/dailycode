@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int distributeCandies(vector<int>& candyType) {
+        set<int>po;
+        for(int i:candyType){
+            po.insert(i);
+        }
+        int n=candyType.size()/2;
+        int m=po.size();
+        if(n<m){
+            return n;
+        }else{
+            return m;
+        }
+    }
+};
