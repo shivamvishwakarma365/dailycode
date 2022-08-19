@@ -14,3 +14,7 @@ public:
         
     }
 };
+
+
+
+//SUM OF N NATURAL NUMBERS ARE S=N(N+1)/2;
