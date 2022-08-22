@@ -1,0 +1,19 @@
+// Function to return the position of the first repeating element.
+    int firstRepeated(int arr[], int n) {
+        set<int>sp;
+        int ans=-1;
+        for(int i=n-1;i>=0;i--){
+            if(sp.find(arr[i])!=sp.end()){
+                ans=i+1;
+            }else{
+                sp.insert(arr[i]);
+            }
+        }
+        return ans;
+    }
+    
+    
+    
+   //can we done by using hashing 
+   //or by creating a auxilary array temp then sorting it ans then after considering each element in the main array search the occurence in the temp using binary search
+   //or by simple n2 method nested loops;
