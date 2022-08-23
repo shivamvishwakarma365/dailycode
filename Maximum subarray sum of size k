@@ -1,0 +1,18 @@
+long maximumSumSubarray(int k, vector<int> &arr , int n){
+        int s=0;
+        int e=0;
+        long sum=0;
+        long ans=0;
+        while(e<n){
+            sum+=arr[e];
+            if(e-s+1==k){
+                ans=max(ans,sum);
+                sum-=arr[s];
+                s++;
+                e++;
+            }else{
+                e++;
+            }
+        }
+        return ans;
+    }
