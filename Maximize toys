@@ -1,0 +1,23 @@
+int toyCount(int n, int K, vector<int> arr)
+    {
+       int ans=0;
+       
+       int sum=0;
+       int j=0;
+       int i=0;
+       sort(arr.begin(),arr.end());
+       while(j<n){
+           sum+=arr[j];
+           if(sum<=K){
+               ans=max(ans,j-i+1);
+           }else{
+               while(sum>K){
+                   sum-=arr[i];
+                   i++;
+               }
+               if(sum<=K)ans=max(ans,j-i+1);
+           }
+           j++;
+       }
+       return ans;
+    }
