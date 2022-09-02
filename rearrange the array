@@ -1,0 +1,16 @@
+int * Rearrange(int *arr,int n){
+       
+        for(int i=0;i<n;i++) {
+        if(arr[i]==-1) {
+            continue;
+        } else if(arr[i]!=i) {
+            int pos = arr[i];
+            arr[i] = -1;
+            while(pos!=-1 && arr[pos]!=pos) {
+                int tmp = arr[pos];
+                arr[pos] = pos;
+                pos = tmp;
+            }
+        }
+    }
+    return arr;
