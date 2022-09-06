@@ -1,0 +1,26 @@
+ vector<string> winner(string arr[],int n)
+    {
+        map<string,int>mp;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        int maxi=0;
+        string key;
+        for(auto it=mp.begin();it!=mp.end();it++){
+            string var=it->first;
+            int t=it->second;
+            if(t>maxi){
+                maxi=t;;
+                key=var;
+            }else if(t==maxi){
+                if(var<key){
+                    key=var;
+                }
+            }
+        }
+        vector<string>ans;
+        string temp=to_string(maxi);
+        ans.push_back(key);
+        ans.push_back(temp);
+        return ans;
+    }
