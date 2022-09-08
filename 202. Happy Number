@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        unordered_map<int,int>mp;
+        while(n!=1){
+            int current =n;
+            int sum=0;
+            while(current!=0){
+                sum+=(current%10)*(current%10);
+                current=current/10;
+            }
+            if(mp.find(sum)!=mp.end()){
+                return false;
+            }
+            mp[sum]++;
+            n=sum;
+            
+            
+            
+            
+        }
+        return true;
+    }
