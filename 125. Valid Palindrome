@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isequal(int l,int r){
+        if(l==r || (l>='A' && l<='Z' && r==l+32) ||(r>='A' && r<='Z' && l==r+32) ){
+            return true;
+        }
+        return false;
+    }
+    bool isPalindrome(string s) {
+        if(s.length()==0)return true;
+        vector<int>arr;
+        int i=0;
+        int n=s.length();
+        while(i<n){
+            if((s[i]>='A' && s[i]<='Z' )|| (s[i]>='a' && s[i]<='z' )|| (s[i]>='0' && s[i]<='9')){
+                arr.push_back(s[i]);
+            }
+            i++;
+        }
+        int m=arr.size();
+        int l=0;
+        int r=m-1;
+        while(l<r){
+            if(isequal(arr[l],arr[r])==false)return false;
+            l++;
+            r--;
+        }
+        return true;
+    }
+};
