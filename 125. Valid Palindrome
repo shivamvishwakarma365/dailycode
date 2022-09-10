@@ -1,3 +1,5 @@
+//this solution uses extra space
+
 class Solution {
 public:
     bool isequal(int l,int r){
@@ -28,3 +30,20 @@ public:
         return true;
     }
 };
+//this solution dosen't use extra space
+int left = 0, right = s.length()-1;
+        while(left<right)
+        {
+            if(!isalnum(s[left])) left++;
+            else if(!isalnum(s[right])) right--;
+            else if(tolower(s[left])!=tolower(s[right])) return false;
+            else {left++; right--;}
+        }
+        return true;
+ 
+ 
+ about isalnum use:
+ this is the use:
+ isalnum() function in C programming language checks whether the given character is alphanumeric or not
+ isalnum() function returns some value. It always returns ‘8’ for all characters except special characters like (#,@,% etc.). 
+ It will always return ‘0’ for special characters.
