@@ -1,0 +1,52 @@
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        for(int i=0;i<=30;i++){
+            int ans=pow(2,i);
+            if(ans==n){
+                return true;
+            }
+        }
+        return false;
+    }
+};
+--------------------
+1. Using Reminder-divident method:-
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        if(n==0) return false;
+        while(n%2==0) n/=2;
+        return n==1;
+    }
+};
+Time Complexity: O(logn)
+Space Complexity: O(1)
+3. Bit manipulation :-
+Tip: Always remember that bit manipulation techniques are usually based on observations from multiple examples
+
+Let's take some good exampes :
+number->binary form
+3->0000 0011
+4->0000 0100
+5->0000 0101
+6->0000 0110
+7->0000 0111
+8->0000 1000
+The observation we can conclude is that the number which is a power of two has always compulsoryily 1 true bit.
+
+Now consider :-
+bit representation of 7  -> 0111
+bit representation of 8  -> 1000
+bitwise AND of 7 and 8 -> 0000
+we are gonna use this property for for all numbers which are powers of two
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        if(n<=0) return false;
+        return ((n&(n-1))==0);
+    }
+};
+Time Complexity : O(1)
+Space Complexity : O(1)
