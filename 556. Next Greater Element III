@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int nextGreaterElement(int n) {
+        long m=n;
+        int previoussum=-1;
+        int currentsum=-1;
+        int counter[10]={0};
+        while(m>0){
+            currentsum=(int)m%10;
+            m=m/10;
+            counter[currentsum]++;
+            if(previoussum>currentsum){
+                 int num=currentsum+1;
+                while(counter[num]==0)num++;
+                counter[num]--;
+                m=m*10+num;
+                for(int i=0;i<10;i++){
+                    while(counter[i]-->0){
+                        m=m*10+i;
+                    }
+                }
+                return m>INT_MAX?-1:(int)m;
+            }
+            previoussum=currentsum;
+        }
+        return -1;
+    }
+};
