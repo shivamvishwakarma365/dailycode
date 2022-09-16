@@ -1,0 +1,30 @@
+Given an array A containing 2*N+2 positive numbers, 
+out of which 2*N numbers exist in pairs whereas the other two number occur exactly once and are distinct. 
+Find the other two numbers. 
+Return in increasing order.
+
+
+
+
+vector<int> singleNumber(vector<int> nums) 
+    {
+        int ans=0;
+        int set1=0;
+        int set2=0;
+        for(int i:nums){
+            ans^=i;
+        }
+        vector<int>arr;
+        int rightmostbit=ans&~(ans-1);
+        for(int i:nums){
+            if(rightmostbit&i){
+                set1^=i;
+            }else{
+                set2^=i;
+            }
+        }
+        arr.push_back(set1);
+        arr.push_back(set2);
+        sort(arr.begin(),arr.end());
+        return arr;
+    }
