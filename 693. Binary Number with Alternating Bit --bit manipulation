@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool check(int num){
+        if(((num+1)&num)==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    bool yo(int n){
+        int num=n^(n>>1);
+        return check(num);
+    }
+    bool hasAlternatingBits(int n) {
+        if(yo(n)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+};
+//main concept if the result n^(n>>1)are all set or not
