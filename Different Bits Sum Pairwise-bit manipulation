@@ -1,0 +1,22 @@
+#define mod 1000000007
+int Solution::cntBits(vector<int> &A) {
+   
+    long long int n=A.size();
+    long long int ans=0;
+    long long int count =0;
+    for(int i=0;i<31;i++){
+        count=0;
+        for(int j=0;j<A.size();j++){
+            if(A[j]& 1<<i){
+                count++;
+            }
+        }
+        ans += (count * (n - count) * 2);
+       
+    }
+    ans=ans%mod;
+    ans=(int)ans;
+    return ans%mod;
+    
+}
+//the main conecpt is to count he set bits then get the answer
