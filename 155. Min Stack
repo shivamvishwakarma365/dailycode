@@ -1,0 +1,47 @@
+class MinStack {
+    stack<long long>stk;
+    long long mini;
+public:
+    MinStack() {
+        while(stk.empty()==false)stk.pop();
+        mini=INT_MAX;
+    }
+    
+    void push(int value) {
+        long long val=value;
+        if(stk.empty()){
+            stk.push(val);
+            mini=val;
+        }else{
+            if(val<mini){
+                stk.push(2*val*1ll-mini);//inserting the modified value it will always be less than mini if its modified 
+                mini=val;
+            }else{
+                stk.push(val);
+            }
+        }
+    }
+    
+    void pop() {
+        if(stk.empty())return;
+        long long y=stk.top();
+        stk.pop();
+        if(y<mini){
+            //we have roll back
+            mini=2*mini-y;//the previous minimum after removing the top of the stack
+        }
+    }
+    
+    int top() {
+        if(stk.empty())return -1;
+        long long y=stk.top();
+        if(y<mini){
+            return mini;
+        }
+        return y;
+    }
+    
+    int getMin() {
+        return mini;
+    }
+};
