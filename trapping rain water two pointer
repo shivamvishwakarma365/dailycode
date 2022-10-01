@@ -1,0 +1,21 @@
+int Solution::trap(const vector<int> &arr) {
+    int ans=0;
+    int n=arr.size();
+    int l=0;
+    int r=n-1;
+    int leftmax=0;
+    int rightmax=0;
+    while(l<=r){
+        leftmax=max(leftmax,arr[l]);
+        rightmax=max(rightmax,arr[r]);
+        if(leftmax<rightmax){
+            ans+=(leftmax-arr[l]);
+            l++;
+        }else{
+            ans+=(rightmax-arr[r]);
+            r--;
+        }
+    }
+    return ans;
+    
+}
