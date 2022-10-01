@@ -1,0 +1,58 @@
+class Solution {
+public:
+    int maxsize(vector<int>&arr){
+        stack<int>stk;
+   int n=arr.size();
+  vector<int>right(n,n);//nearest smallest to the right
+  vector<int>left(n,-1);//nearest smallest to the left
+  vector<int>area(n,0);
+  //to the right
+   for(int i=0;i<n;i++){
+       while(!stk.empty() && arr[stk.top()]>arr[i]){
+           right[stk.top()]=i;
+           stk.pop();
+       }
+       stk.push(i);
+   }
+   //emptying the stack to use it again
+   while(!stk.empty()){
+       stk.pop();
+   }//to the left
+   for(int i=n-1;i>=0;i--){
+       while(!stk.empty() && arr[stk.top()]>arr[i]){
+           left[stk.top()]=i;
+           stk.pop();
+       }
+       stk.push(i);
+   }
+   for(int i=0;i<n;i++){
+       area[i]=arr[i]*(right[i]-left[i]-1);
+   }
+   //returning the maximum area
+   sort(area.begin(),area.end());
+   return area[n-1];
+   
+    }
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int m=matrix.size();
+        if(m==0) return 0;
+        int n=matrix[0].size(), result=0;
+        vector<int> histogram(n, 0);
+        
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(matrix[i][j]=='1')
+                    histogram[j]+=1;
+                else
+                    histogram[j]=0;
+            }
+            
+            result = max(result, maxsize(histogram));
+            cout<<result<<" ";
+        }
+        return result;
+        
+    }
+        
+    
+};
