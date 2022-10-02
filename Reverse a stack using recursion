@@ -1,0 +1,26 @@
+class Solution{
+public:
+void insert(stack<int>&ans,int val){
+    if(ans.empty()){
+        ans.push(val);
+        return;
+    }
+    int naya=ans.top();
+    ans.pop();
+    insert(ans,val);
+    ans.push(naya);
+}
+void reverse(stack<int>&ans){
+    if(ans.empty()){
+        return;
+    }
+    int val=ans.top();
+    ans.pop();
+    reverse(ans);
+    insert(ans,val);
+}
+    stack<int> Reverse(stack<int> st){
+        reverse(st);
+        return st;
+    }
+};
