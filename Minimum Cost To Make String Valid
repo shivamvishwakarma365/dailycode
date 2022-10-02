@@ -1,0 +1,41 @@
+#include <bits/stdc++.h> 
+int findMinimumCost(string str) {
+  //algorithm
+    //first make check if even or odd if odd then return -1 as
+    //thier will be uequal number of open and close brackets
+    //after checking then remove the valid brackets
+    //all thats remains are invalid 
+    //the apply the logic algo
+
+    int n=str.size();
+    if(n%2==1)return -1;
+    stack<int>ans;
+    for(int i=0;i<n;i++){
+        char val=str[i];
+        //checking if open
+        if(val=='{'){
+            ans.push(val);
+        }else{
+            //closed bracket
+            if(!ans.empty() && ans.top()=='{'){
+                ans.pop();
+            }else{
+                ans.push(val);
+            }   
+        }
+      
+    }
+    int a=0;
+        int b=0;
+        while(!ans.empty()){
+            int po=ans.top();
+            if(po=='{'){
+                a++;
+            }else{
+                b++;
+            }
+            ans.pop();
+        }
+    int re=(a+1)/2+(b+1)/2;
+    return re;
+}
