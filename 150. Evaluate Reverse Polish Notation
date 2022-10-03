@@ -1,0 +1,59 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+          stack<int> s;
+        for(int i=0;i<tokens.size();i++){
+            if(tokens[i]=="+" || tokens[i]=="-" || tokens[i]=="*" || tokens[i]=="/"){
+                //this thing is a life saver int64_t
+                int64_t a = s.top();
+                s.pop();
+                int64_t b = s.top();
+                s.pop();
+                int res;
+                if(tokens[i] == "+"){
+                    s.push(a+b);
+                }
+                else if(tokens[i] == "-"){
+                    s.push(b-a);
+                }
+                else if(tokens[i] == "*"){
+                    long long int x=a*b;
+                    int val=x;
+                    s.push(x);
+                }
+                else if(tokens[i] == "/"){
+                    s.push(b/a);
+                }
+            }
+            else
+                s.push(stoi(tokens[i]));
+        }
+        return s.top();
+ 
+        
+      /*  
+    stack<int>ans;
+        for(int i=0;i<t.size();i++){
+            if(t[i]=="+" or t[i]=="-" or t[i]=="*" or t[i]=="/"){
+                int b=ans.top();
+                ans.pop();
+                int a=ans.top();
+                ans.pop();
+                int num;
+            if(t[i]=="+")num=a+b;
+            else if(t[i]=="/")num=a/b;
+            else if(t[i]=="-")num=a-b;
+            else {
+                num=a*b;
+            }
+            ans.push(num);
+                }
+            
+            else{
+                ans.push(stoi(t[i]));
+            }
+        }
+        return ans.top();
+       */
+    }
+};
