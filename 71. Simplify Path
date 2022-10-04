@@ -1,0 +1,34 @@
+class Solution {
+public:
+    string simplifyPath(string path) {
+        //using stack
+        stack<string>stk;
+        int n=path.size();
+        for(int i=0;i<n;++i){
+            
+            if(path[i]=='/')continue;
+            string temp;
+            while(i<path.size() && path[i]!='/'){
+                temp+=path[i];
+                ++i;
+            }
+            if(temp=="."){
+                continue;
+            }else if(temp==".."){
+                if(!stk.empty()){
+                    stk.pop();
+                }
+            }else{
+                stk.push(temp);
+            }
+        }
+        //all the stuff expect the aplha stuff will be kicked out
+        string ans;
+        while(!stk.empty()){
+            ans="/"+stk.top()+ans;
+            stk.pop();
+        }
+        if(ans.size()==0)return "/";
+        return ans;
+    }
+};
