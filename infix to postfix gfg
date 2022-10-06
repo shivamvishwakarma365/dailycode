@@ -1,0 +1,77 @@
+int prec(char a){
+        if(a=='^'){
+            return 3;
+        }else if(a=='/' || a=='*'){
+            return 2;
+        }else if(a=='+' || a=='-'){
+            return 1;
+        }
+        return 0;
+    }
+    
+    bool isop(char a){
+        if(a=='+' || a=='-' || a=='*' || a=='^' || a=='/' || a=='(' || a==')')return true;
+        return false;
+    }
+    // Function to convert an infix expression to a postfix expression.
+    string infixToPostfix(string s) {
+        stack<char> st;
+        string res="";
+      for(int i=0;i<s.size();i++){
+            if(!isop(s[i])){
+                res+=s[i];
+            }else if(s[i]=='('){
+                st.push(s[i]);
+            }else if(s[i]==')'){
+                while(!st.empty() && st.top()!='('){
+                    res+=st.top();
+                    st.pop();
+                }
+                st.pop();
+            }else{
+                while(st.size()!=0 && prec(st.top())>=prec(s[i])){
+                    res+=st.top();
+                    st.pop();
+                }
+                st.push(s[i]);
+            }
+            
+        }
+        while(!st.empty()){
+            res+=st.top();
+            st.pop();
+        }
+        return res;
+    }
+    //without using any function 
+    //using stack and map
+      public:
+    // Function to convert an infix expression to a postfix expression.
+   string infixToPostfix(string s) {
+    string postfix = "";
+    stack<char> st;
+    map<char,int> p;
+    p['+'] = p['-'] = 1;
+    p['*'] = p['/'] = 2;
+    p['^'] = 3;
+    for (int i = 0; i < s.size(); i++){
+        if ((s[i] >= 'a' && s[i] <= 'z' )|| (s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= '0' && s[i] <= '9'))
+            postfix += s[i];
+        else if (s[i] == '(')
+            st.push(s[i]);
+        else if (s[i] == ')') {
+            while (!st.empty() && st.top() != '(')
+                postfix += st.top(), st.pop();
+            st.pop();
+        }
+        else {
+            while (!st.empty() && (p[st.top()] > p[s[i]] || (p[st.top()] == p[s[i]] && st.top() != '^')))
+                postfix += st.top(),st.pop();
+            st.push(s[i]);
+        }
+    }
+    while (!st.empty())
+        postfix += st.top(),st.pop();
+    return postfix;
+}
+};
