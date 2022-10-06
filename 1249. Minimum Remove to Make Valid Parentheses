@@ -1,0 +1,81 @@
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        //naive way
+        /*
+        int n=s.size();
+        stack<int>stk;
+        for(int i=0;i<n;i++){
+            char a=s[i];
+            if(a=='('){
+                stk.push(i);
+            }else if(a==')'){
+                //if the stack is empty it means that it dosent have any friends 
+                if(stk.empty()){
+                    s[i]='#';
+                }else{
+                    //has friends
+                    stk.pop();
+                }
+            }else{
+                //b
+                continue;
+            }
+        }
+        //remaining open brackets (dosen't have any friends)
+        string ans="";
+        while(!stk.empty()){
+            int val=stk.top();
+            s[val]='#';
+            stk.pop();
+        }
+        for(int i=0;i<n;i++){
+            if(s[i]!='#'){
+                ans+=s[i];
+            }
+        }
+        return ans;
+        */
+        //optimised apporach
+        int n=s.size();
+        string ans="";
+        int count=0;
+        for(int i=0;i<n;i++){
+            char a=s[i];
+            if(a=='('){
+                count++;
+            }else if(a==')'){
+                if(count>0){
+                    count--;
+                }else{
+                    s[i]='#';
+                }
+            }else{
+                continue;
+            }
+        }
+        count=0;
+
+        for(int i=n-1;i>=0;i--){
+            char a=s[i];
+            if(a==')'){
+                count++;
+            }else if(a=='('){
+                if(count>0){
+                    count--;
+                }else{
+                    s[i]='#';
+                }
+            }else{
+                continue;
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(s[i]!='#'){
+                ans+=s[i];
+            }
+        }
+        return ans;
+    
+    }
+};
