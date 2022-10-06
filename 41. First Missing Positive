@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        //thier are a total of three apporachs ,one is pure brute other is using hashmap and the best one has 
+        //complex logic behind it
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            long key=nums[i];
+            long car=key-1;
+            if(key>=1 && key<=n){
+            if(key!=nums[car]){
+                swap(nums[car],nums[i]);
+                i--;
+            }
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(i+1!=nums[i])return i+1;
+        }
+        //worst case
+        return n+1;
+    }
+};
+//the main logic is too check if they are sitting at thier respective positions or not
