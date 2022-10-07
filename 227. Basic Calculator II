@@ -1,0 +1,71 @@
+class Solution {
+public:
+    int calculate(string s) {
+        /*
+        //naive apporach using stack
+        //this works like summation of functions obtained
+        int n=s.size();
+        int cnum=0;
+        char operation='+';
+        stack<int>stk;
+        for(int i=0;i<n;i++){
+            char val=s[i];
+            if(isdigit(val)){
+                cnum=(cnum*10)+(val-'0');
+            }
+            //using i==n-1 for the last operation
+            if(!isdigit(val) && val!=' ' || i==n-1){
+                if(operation=='+'){
+                    stk.push(cnum);
+                }else if(operation=='-'){
+                    stk.push(-cnum);
+                }else if(operation=='*'){
+                    int st=stk.top();
+                    stk.pop();
+                    stk.push(st*cnum);
+                }else if(operation=='/'){
+                    int st=stk.top();
+                    stk.pop();
+                    stk.push(st/cnum);
+                }
+                operation=val;
+                cnum=0;
+            }
+        }
+        int ans=0;
+        while(!stk.empty()){
+            int m=stk.top();
+            ans+=m;
+            stk.pop();
+        }
+        return ans;
+        */
+        //another apporach without using stack
+        //almost the same 
+        int n=s.size();
+        char sign='+';
+        int cnum=0;
+        int lastnumber=0;
+        int result=0;
+        for(int i=0;i<n;i++){
+            char val=s[i];
+            if(isdigit(val)){
+                cnum=(cnum*10)+(val-'0');
+            }
+            if(!isdigit(val) && val!=' ' || i==n-1){
+                if(sign=='+' || sign=='-'){
+                    result+=lastnumber;
+                    lastnumber=(sign=='+')?cnum:-cnum;
+                }else if(sign=='*'){
+                    lastnumber*=cnum;
+                }else if(sign=='/'){
+                    lastnumber=lastnumber/cnum;
+                }
+                sign=val;
+                cnum=0;
+            }
+        }
+        return result+=lastnumber;
+        
+    }
+};
