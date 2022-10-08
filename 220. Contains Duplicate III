@@ -1,0 +1,38 @@
+class Solution {
+public:
+    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+       //the naive way to do it
+        
+        vector<pair<int,int>>v(nums.size());
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            v[i].first=nums[i];
+            v[i].second=i;
+        }
+        sort(v.begin(),v.end());
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(v[i].first+t>=v[j].first){
+                    if(abs(v[i].second-v[j].second)<=k)return true;
+                }else{
+                    break;
+                }
+            }
+        }
+        return false;
+        
+        /*
+        //this techinique uses sliding window fanda
+        //optimal way to do this uses multiset
+          int n=nums.size();
+        multiset<int>window;
+        for(int j=0;j<n;j++){
+            if(j>k)window.erase(nums[j-k-1]);
+            auto val=window.lower_bound(nums[j]-t);
+            if(val!=window.end() && *val<=(nums[j]+t))return true;
+            window.insert(nums[j]);
+        }
+        return false;
+*/        
+    }
+};
