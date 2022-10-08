@@ -1,0 +1,67 @@
+class Solution {
+public:
+    void getString(string &str,string &ans,int i,int n)
+    {
+			if(i==n)     
+            return;
+        
+        if(str[i]=='#')
+        {
+            if(!ans.empty())     
+            ans.pop_back();
+        }
+        else
+        {
+            ans.push_back(str[i]);   
+        }
+        getString(str,ans,i+1,n);    
+    }
+    
+   
+    bool backspaceCompare(string s, string t) {
+        //recursive part
+        string first,second;
+        getString(s,first,0,s.size());
+        getString(t,second,0,t.size());
+        //one can string as a stack in a iterative pattern this will take much less memeory
+        
+        if(first==second) return true;
+        else return false;
+        //first way to do it using string
+        stack<char>name;
+        int n=s.size();
+        int m=t.size();
+        string name2;
+        string name1;
+        for(int i=0;i<n;i++){
+            if(!name.empty() && s[i]=='#'){
+                name.pop();
+            }else if(s[i]!='#'){
+                name.push(s[i]);
+            }
+        }
+        while(!name.empty()){
+            name1+=name.top();
+            name.pop();
+        }
+       
+       for(int i=0;i<m;i++){
+            if(!name.empty() && t[i]=='#'){
+                name.pop();
+            }else if(t[i]!='#'){
+                name.push(t[i]);
+            }
+        }
+        while(!name.empty()){
+            name2+=name.top();
+            name.pop();
+        }
+        cout<<name1<<endl;
+        cout<<name2;
+        return name1==name2;
+        
+        //another approach using two pointer
+        
+    }
+};
+//two pointer approach is remaining
