@@ -22,4 +22,19 @@ public:
         return false;
     }
 };
-//can use hashset too
+// using sliding window approach
+        int n=nums.size();
+        map<int,int>mp;
+        int j=0;
+        int i=0;
+        while(j<n){
+            if(j>k){
+                mp[nums[i]]--;
+                i++;
+            }
+            if(mp[nums[j]]>0)return true;
+            
+            mp[nums[j]]++;
+            j++;
+        }
+        return false;
