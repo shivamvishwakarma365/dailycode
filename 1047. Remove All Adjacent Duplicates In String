@@ -1,0 +1,70 @@
+class Solution {
+public:
+    /*
+    //some recursion stuff
+    string ayo;
+    void hello(string a,int index){
+        //base condition
+        if(index>=a.size()){
+            ayo=a;
+            return;
+        }
+        if(a[index]==a[index+1]){
+            //duplicate at the start
+            if(index==0){
+                hello(a.substr(index+2),0);
+            }else{
+                hello(a.substr(0,index)+a.substr(index+2),0);
+            }
+        }else{
+            hello(a,index+1);
+        }
+    }
+  */
+    string removeDuplicates(string s) {
+        //lets try using stack
+        
+        stack<char>name;
+        for(int i=0;i<s.size();i++){
+            char a=s[i];
+            if(name.empty()){
+                name.push(a);
+            }else{
+                if(name.top()==a){
+                    name.pop();
+                }else{
+                    name.push(a);
+                }
+            }
+        }
+        string val;
+        while(!name.empty()){
+            val+=name.top();
+            name.pop();
+        }
+        reverse(val.begin(),val.end());
+        return val;
+        
+
+        /*
+        //lets try a recursion approach
+        ayo="";
+        hello(s,0);
+        return ayo;
+        */
+        
+        /*
+        //the two pointer approach
+        //took it though
+        int i = 0, n = s.length();
+        for (int j = 0; j < n; ++j, ++i) {
+            cout<<"before"<<i<<endl;
+            s[i] = s[j];
+            if (i > 0 && s[i - 1] == s[i])
+                i -= 2;
+             cout<<"after"<<i<<endl;
+        }
+        return s.substr(0, i);
+        */
+    }
+};
