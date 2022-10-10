@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minOperations(vector<string>& logs) {
+        //way1 using stack as its to be done that way
+        stack<string>name;
+        for(string a:logs){
+            if(a=="../"){
+                if(!name.empty()){
+                    name.pop();
+                }
+            }else if(a=="./"){
+                continue;
+            }else{
+                name.push(a);
+            }
+        }
+        int ans=name.size();
+        return ans;
+    }
+   
+ 
+};
