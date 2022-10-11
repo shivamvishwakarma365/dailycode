@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int longestContinuousSubstring(string s) {
+        //a bit more upgrade to the question 
+        //length of the longest alpabetical continuos substring bit it alphabetically 
+        //like it can be acez 
+        //we can use this char-'a';
+        //
+        //
+        //
+        int ans = 0;
+        s.push_back('#');
+     int curr = 1;
+     for(int i =1;i<s.size();i++){
+        if(s[i-1]+1==s[i])
+            curr++;
+        else{
+            ans = max(curr,ans);
+            curr=1;
+        }
+    }
+    
+    return ans;
+        //some sliding window technique
+          int i=0,j=1,n=s.length(),maxi=1;     
+        while(j<n)
+        {
+            if(s[j]-s[j-1] == 1)//like b-a is 1 (98-97);
+            {
+                j++;
+            }
+            else
+            {
+                maxi=max(maxi,j-i);
+                i=j;
+                j++;
+            }
+        }
+        return max(maxi,j-i);
+    }
+    
+};
