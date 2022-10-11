@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        //the minimu  no of operations to make all elements zero would be the
+        //the number of unique elements present except zero
+        //so we are set for this
+        set<int>ans(nums.begin(),nums.end());
+        //checking if thier is zero or not
+        if(*ans.begin()==0)return ans.size()-1;
+        return ans.size();
+   
+    }
+};
