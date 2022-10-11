@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxPower(string s) {
+        char a=s[0];
+        int maxi=-1;
+        int y=0;
+        int n=s.size();
+        for(int i=0;i<n;i++){
+            if(a!=s[i]){
+                a=s[i];
+                y=0;
+                //did this because like when bb are consecutive then a will hold b then i will go on forward without considering it
+                i--;
+            }else{
+                y++;
+                maxi=max(maxi,y);
+            }
+        }
+        return maxi;
+    }
+};
