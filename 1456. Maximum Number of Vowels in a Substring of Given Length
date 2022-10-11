@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxVowels(string s, int k) {
+        int n=s.size();
+        int count=0;
+        int maxi=0;
+        int ans[26]={0};
+        ans[0]=ans[4]=ans[8]=ans[20]=ans[14]=1;
+      
+        for(int i=0;i<n;i++){
+            if(i>=k && ans[s[i-k]-'a']){
+                count-=1;
+            }
+            if(ans[s[i]-'a']==1){
+                count+=1;
+
+            }
+            maxi=max(maxi,count);
+        }
+        return maxi;
+        
+      
+        
+       
+    }
+};
