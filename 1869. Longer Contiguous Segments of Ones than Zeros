@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int count(string a,char x){
+        int n=a.size();
+        int maxi=-1;
+        int count=0;
+        for(int i=0;i<n;i++){
+       if(a[i]==x){
+           count++;
+               }else{
+           maxi=max(maxi,count);
+           count=0;
+            }
+        }
+        
+        return maxi;
+    }
+    bool checkZeroOnes(string s) {
+        //though i think this problem can be done using sliding window
+        //but i do have a much simpler approach
+        s.push_back('$');//this has to done for this testcase 111000 to count the zero
+        int a=count(s,'1');
+        int b=count(s,'0');
+       
+        return a>b;
+        
+    }
+};
