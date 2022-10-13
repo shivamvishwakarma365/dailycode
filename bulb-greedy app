@@ -1,0 +1,22 @@
+int Solution::bulbs(vector<int> &arr) {
+    int n=arr.size();;
+    int cost=0;
+    for(int i=0;i<n;i++){
+        if(cost%2==0){
+            
+        }else{
+            if(arr[i]==0){
+                arr[i]=1;
+            }else{
+                arr[i]=0;
+            }
+        }
+        if(arr[i]==1){
+            continue;
+        }else{
+            cost+=1;
+        }
+        
+    }
+    return cost;
+}
