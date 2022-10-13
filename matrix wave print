@@ -1,5 +1,6 @@
 void wavePrint(int **arr, int nRows, int mCols)
 {
+//questions can be reffered to the gfg
     // Loop to iterate through the columns given to us.
     for (int j = 0; j < mCols; j++)
     {
