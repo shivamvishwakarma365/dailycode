@@ -1,0 +1,27 @@
+vector<int> Solution::solve(vector<int> &arr, int b) {
+     int n=arr.size();
+     //using unordered map because the entering and removing ios very easy 
+     //all the simple working takes log n time which makes it very fast
+    unordered_map<int,int>mp;
+    for(int i=0;i<n;i++){
+         mp[arr[i]]=i;
+    }
+    int i=0;
+    while(b>0 && i<arr.size()){
+        int j=mp[n];
+        if(i==j){
+            i+=1;
+            n-=1;
+            continue;
+        }else{
+            b-=1;
+            swap(arr[i],arr[j]);
+            swap(mp[arr[i]],mp[arr[j]]);
+           
+        }
+        i+=1;
+        n-=1;
+    }
+    return arr;
+    
+}
