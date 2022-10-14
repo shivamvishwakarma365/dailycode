@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> prevPermOpt1(vector<int>& arr) {
+        int n=arr.size();
+    int val=-1;
+    for(int i=n-1;i>=1;i--){
+        if(arr[i-1]>arr[i]){
+            val=i-1;
+            break;
+        }
+    }
+        //if val is -1 it means that the array is a monotonic increasing array
+        if(val==-1){
+            return arr;
+        }
+    int r=val+1;
+    for(int i=val+1;i<n;i++){
+        if(arr[i]<arr[val] && arr[r]<arr[i]){
+            r=i;
+        }
+    }
+    swap(arr[val],arr[r]);
+        return arr;
+    }
+};
