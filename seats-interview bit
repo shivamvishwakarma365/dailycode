@@ -1,0 +1,40 @@
+int Solution::seats(string s) {
+    int n=s.size();
+    const int mod = 1e7+3;
+    vector<int>ans;
+    for(int i=0;i<n;i++){
+        if(s[i]=='x'){
+            ans.push_back(i);
+        }
+    }
+    for(int i=0;i<ans.size();i++){
+        ans[i]-=i;
+    }
+    int m=ans.size();
+    if(m==0)return 0;
+    int ao=INT_MAX;
+    int point;
+    int l;
+    if(m%2==0){
+        l=m/2-1;
+    }else{
+        l=m/2;
+    }
+    point=ans[l];
+    int total=0;
+    for(int i=0;i<ans.size();i++){
+        total+=abs(ans[i]-point);
+        total%=mod;
+        
+    }
+    ao=min(ao,total%mod); 
+    return ao%mod;
+    
+}
+//brute force way check for each type operation
+like
+for(int i=0;i<n;i++){//n is the given array size
+total=0;
+for(int a:ans){
+total+=abs(a-i)
+ans=min(ans,total)
