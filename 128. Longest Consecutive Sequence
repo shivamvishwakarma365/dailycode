@@ -3,18 +3,27 @@ public:
     int longestConsecutive(vector<int>& nums) {
         //solving using hashset
         //this is one of the most optimal solution 
-        ]//thier is a brute way to do it
+        //thier is a brute way to do it
             //by simply sorting it
             
-        int count=0;
-        int maxi=0;
-        int ao=-1;
-        int n=nums.size();
-        set<int>ans;
+     unordered_set<int> s(begin(nums), end(nums));
+	int longest = 0;
+	for(auto& num : s) {
+        if(s.count(num - 1)) continue;
+		int j = 1;
+		while(s.count(num + j)) j++;
+		longest = max(longest, j);
+	}
+	return longest;
+        /*
+ 
+        int ao=0;
+      
+        unordered_set<int>ans;
         for(int i:nums){
             ans.insert(i);
         }
-        for(int i=0;i<n;i++){
+        for(int i=0;i<nums.size();i++){
             if(ans.find(nums[i]-1)==ans.end()){
                 int j=nums[i];
                 while(ans.find(j)!=ans.end()){
@@ -24,5 +33,6 @@ public:
             }
         }
         return ao;
+        */
     }
 };
