@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) {
+        //we can use memory in this question 
+        //this approach uses O(n)time complexity and O(n) space complexity
+        /*
+        int ans=0;
+        int n=nums.size();
+        vector<int>dp(n,0);
+        for(int i=2;i<n;i++){
+            if(nums[i]-nums[i-1]==nums[i-1]-nums[i-2]){
+                dp[i]=1+dp[i-1];
+                ans+=dp[i];
+            }
+        }
+        return ans;
+        */
+        //this approach uses O(1) space complexity
+        //and this uses o(n) time complexity
+            /*
+        int memory=0;
+        int m=nums.size();
+        int ans=0;
+        for(int i=2;i<m;i++){
+            if(nums[i]-nums[i-1]==nums[i-1]-nums[i-2]){
+                memory+=1;
+                ans+=memory;
+            }else{
+                memory=0;
+            }
+        }
+        return ans;
+        */
+        //way3 using summation
+        int size=nums.size();
+        int count=0;
+        int ans=0;
+        for(int i=2;i<size;i++){
+            if(nums[i]-nums[i-1]==nums[i-1]-nums[i-2]){
+                count++;
+               
+            }else{
+                ans+=(count*(count+1))/2;
+                count=0;
+            }
+        }
+           ans+=(count*(count+1))/2;
+        return ans;
+    }
+};
