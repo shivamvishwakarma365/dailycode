@@ -1,0 +1,69 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        //using voore voting algo
+        //optimal way
+        int count=1;
+        int n=nums.size();
+        int ans=0;
+        for(int i=1;i<n;i++){
+            if(nums[ans]==nums[i]){
+                count++;
+            }else{
+                count--;
+            }
+            if(count==0){
+                count=1;
+                ans=i;
+            }
+        }
+        int a=nums[ans];
+        count=0;
+        for(int i:nums){
+            if(i==a)count++;
+        }
+        if(count<n/2){
+            return -1;
+        }else{
+            return a;
+        }
+        
+        
+        
+        
+        
+        /*
+        int n=nums.size();
+        int half=n/2;
+        int ans=0;
+        for(int i=0;i<32;i++){
+            int count=0;
+            int mask=1<<i;
+            for(int a:nums){
+                if(mask & a){
+                    count++;
+                }
+            }
+            
+            if(count>half){
+                ans+=1<<i;
+            }
+        }
+        
+        return ans;
+        */
+        /*
+        int half = nums.size()/2, num = 0;
+    for (int i = 31; i >= 0; i--) {
+      int mask = 1 << i, count = 0;
+      for (int el : nums) {
+        if (el & mask) count++;
+      }
+      if (count > half) num |= mask;
+    }
+    return num;
+        */
+     
+        
+    }
+};
