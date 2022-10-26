@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maxConsecutiveAnswers(string answerkey, int k) {
+        //this can be done two ways
+        //using sliding window
+        int n=answerkey.size();
+        int ans=-1;
+        int left=0;
+        int tcount=0;
+        int fcount=0;
+        for(int i=0;i<n;i++){
+            if(answerkey[i]=='F'){
+                fcount++;
+            }else{
+                tcount++;
+            }
+            while(min(fcount,tcount)>k){
+                if(answerkey[left++]=='F'){
+                    fcount--;
+                }else{
+                    tcount--;
+                }
+            }
+            ans=max(ans,i-left+1);
+        }
+        return ans;
+        
+    }
+};
