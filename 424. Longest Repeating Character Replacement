@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        //its like the substring minus the maximum occuring charater in it should be less than equal to k
+        //this questions approach uses sliding window way
+        // and it is a variable size window with some given condition
+        //
+        int n=s.size();
+        vector<int>count(26,0);
+        int ans=0;
+        int maxcharcount=0;
+        int start=0;
+        for(int i=0;i<n;i++){
+            count[s[i]-'A']++;
+            if(maxcharcount<count[s[i]-'A']){
+                maxcharcount=count[s[i]-'A'];
+            }
+            while(i-start-maxcharcount+1>k){
+                count[s[start]-'A']--;
+                start++;
+                for(int i=0;i<26;i++){
+                    if(maxcharcount<count[i]){
+                        maxcharcount=count[i];
+                    }
+                }
+            }
+            ans=max(ans,i-start+1);
+        }
+        return ans;
+    }
+};
