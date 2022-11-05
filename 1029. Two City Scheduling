@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int twoCitySchedCost(vector<vector<int>>& costs) {
+        int n=costs.size();
+        //custom sort according to a-b 
+        sort(costs.begin(),costs.end(),[](const vector<int>&a ,const vector<int>&b){
+            return(a[0]-a[1]<b[0]-b[1]);
+        });
+        int totalprice=0;
+        //as its 2n 
+        //n people should be in city a 
+        //and n people should be in city b
+        
+        for(int i=0;i<costs.size()/2;i++){
+            totalprice+=costs[i][0];
+        }
+         for(int i=costs.size()/2;i<costs.size();i++){
+            totalprice+=costs[i][1];
+        }
+        return totalprice;
+    }
+};
