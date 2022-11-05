@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& a, vector<int>& b) {
+        //s1+y-x=s2-y+x
+        //this is the equation derived from the question given
+        //y=x+(s2-s1)/2
+        set<int>ans;
+        int s1=0;
+        int s2=0;
+        vector<int>nums1;
+        for(int i=0;i<b.size();i++){
+            s2+=b[i];
+            ans.insert(b[i]);
+        }
+         for(int i=0;i<a.size();i++){
+            s1+=a[i];
+        }
+        int avg=(s2-s1)/2;
+        for(int i=0;i<a.size();i++){
+            auto it=ans.find(a[i]+avg);
+            if(it!=ans.end()){
+                nums1.push_back(a[i]);
+                nums1.push_back(a[i]+avg);
+                return nums1;
+            }
+        }
+        
+        return nums1;
+    }
+};
