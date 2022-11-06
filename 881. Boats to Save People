@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numRescueBoats(vector<int>& people, int limit) {
+        //the greedy way
+        sort(begin(people),end(people));
+        int ans=0;
+        int low=0;
+        int left;
+        //1 2 2 3
+        int high=people.size()-1;
+        //kind of like two pointer way
+        while(low<=high){
+            left=limit-people[high];
+            high--;
+            ans++;
+            if(low<=high && left>=people[low]){
+                low++;
+            }
+        }
+        return ans;
+        
+    }
+};
