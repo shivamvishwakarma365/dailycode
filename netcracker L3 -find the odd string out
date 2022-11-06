@@ -1,0 +1,33 @@
+// Online C++ compiler to run C++ program online
+//find the odd string out 
+#include <iostream>
+#include<string>
+#include<vector>
+using namespace std;
+vector<int> diff(string a){
+    vector<int>ans;
+    for(int i=1;i<a.size();i++){
+        int c=a[i]-a[i-1];
+        cout<<c<<" ";
+        ans.push_back(c);
+    }
+    
+    return ans;
+}
+
+int main() {
+    vector<string>arr={"ABCD","BCDE","EFGH","DCBE"};
+    int n=arr.size();
+    
+    vector<vector<int>>bada;
+    for(int i=0;i<n;i++){
+        bada.push_back(diff(arr[i]));
+        cout<<endl;
+    }
+    //check whose diff is unique to others
+    
+   
+    
+    
+    
+}
