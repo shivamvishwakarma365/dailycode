@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int minCost(string colors, vector<int>& neededTime) {
+        colors.push_back('#');
+        neededTime.push_back(-100);
+        int n=colors.size();
+        int total=0;
+        vector<int>ans;
+        int m=neededTime.size();
+        for(int i=0;i<m;i++){
+            if(i==0){
+                ans.push_back(neededTime[i]);
+            }else if(colors[i]==colors[i-1]){
+                ans.push_back(neededTime[i]);
+            }else{
+                sort(ans.begin(),ans.end());
+                total+=(long long)accumulate(ans.begin(),ans.end(),0);
+                total-=(long long)ans[ans.size()-1];
+                ans.clear();
+                ans.push_back(neededTime[i]);
+                
+            }
+            
+        }   
+        return total;
+        
+    }
+};
