@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int twoProduct(long i,vector<int>&nums){
+        unordered_map<int,int>mp;
+        int count=0;
+        for(auto it:nums){
+            if(i%it==0){
+                count+=mp[i/it];
+            }
+            ++mp[it];
+        }
+        return count;
+    }
+    int numTriplets(vector<int>& n1, vector<int>& n2) {
+        //this can be written in two for loops
+     //need a detailed explaination for this one    
+ return accumulate(begin(n1), end(n1), 0, [&](int s, long n) { return s + twoProduct(n * n, n2); }) 
+        + accumulate(begin(n2), end(n2), 0, [&](int s, long n) { return s +  twoProduct(n * n, n1); });
+    }
+};
+//it does has a better optimal way this is best for the interview purpose
