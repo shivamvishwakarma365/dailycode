@@ -1,0 +1,46 @@
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        //using multiset and upper_bound method
+        /*
+        multiset<char>data(letters.begin(),letters.end());
+        auto it=data.upper_bound(target);
+        char a=*it;
+        if(it!=data.end()){
+            return a;
+        }else{
+            return letters[0];
+        }
+        //
+        */
+        /*
+        vector<int> alphabets(26, 0);
+        for(int i=0; i<letters.size() ;i++){
+            alphabets[letters[i] - 'a']++;
+        }
+        int index = (target - 'a' + 1)%26;//doing mod 26 in case the if it get past 26 which is above alpha order
+        //%26 is done to make the index value between 0 to 25.
+        while(alphabets[index] == 0){
+            index = (index+1)%26;
+        }
+        return 'a'+index;
+        */
+        //using binary seacrh
+       
+        int n=letters.size();
+        int low=0;
+        int high=n-1;
+        while(low<high){
+            int mid=low+(high-low)/2;
+            if(letters[mid]<=target){
+                low=mid+1;
+            }else{
+                high=mid;
+            }
+        }
+        return letters[low]>target?letters[low]:letters[0];
+        
+        
+        
+    }
+};
