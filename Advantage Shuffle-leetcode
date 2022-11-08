@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> advantageCount(vector<int>& a, vector<int>& b) {
+        //this can be done using ppriority queue but -.-
+        //using multiset
+        //multiset is the same as set but it can hold multiple value of a single data
+        //this is very slow though like nlogn ,kinda ok 
+        multiset<int>mani(a.begin(),a.end());
+        vector<int>ans;
+        
+        for(int i=0;i<b.size();i++){
+            //upper_bound return a number just larger than the given value
+            auto it=mani.upper_bound(b[i]);
+            if(it!=mani.end()){
+                ans.push_back(*it);
+                mani.erase(it);
+            }else{
+                ans.push_back(*(mani.begin()));
+                mani.erase(mani.begin());
+            }
+        }
+            return ans;
+        }
+};
