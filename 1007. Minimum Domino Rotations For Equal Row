@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {
+        //top keep count
+        vector<int>nums1(7,0);
+        vector<int>nums2(7,0);
+        vector<int>same(7,0);
+        for(int i=0;i<tops.size();i++){
+            nums1[tops[i]]++;
+            nums2[bottoms[i]]++;
+            if(tops[i]==bottoms[i]){
+                same[tops[i]]++;
+            }
+        }
+        for(int i=1;i<7;i++){
+            //this thew conditionn which should be fullfilled
+            if(nums1[i]+nums2[i]-same[i]==tops.size()){
+                return tops.size()-max(nums1[i],nums2[i]);
+            }
+        }
+        return -1;
+        //
+        //the swap thoery
+        //like check for all a[0] in one loops in both array then b[0] as the same of i reaches n then   
+        //return the answer
+        
+    }
+};
