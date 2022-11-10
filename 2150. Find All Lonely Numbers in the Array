@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> findLonely(vector<int>& nums) {
+        unordered_map<int,int>mp;
+        for(int i:nums){
+            mp[i]++;
+        }
+        vector<int>ans;
+        for(int i=0;i<nums.size();i++){
+            if(mp[nums[i]]==1){
+                int a=nums[i]+1;
+                int b=nums[i]-1;
+                if(mp.find(a)==mp.end() and mp.find(b)==mp.end()){
+                    ans.push_back(nums[i]);
+                }
+            }
+        }
+        return ans;
+    }
+};
