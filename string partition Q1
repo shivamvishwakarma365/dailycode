@@ -1,0 +1,30 @@
+// C++ implementation of the above approach
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int maxPartition(string s)
+{
+
+	int n = s.length(), P = 0;
+	string current = "", previous = "";
+	for (int i = 0; i < n; i++) {
+		current += s[i];
+		if (current != previous) {
+			previous = current;
+			current.clear();
+			P++;
+		}
+	}
+
+	return P;
+}
+// Driver code
+int main()
+{
+
+	string s = "aaaa";
+	int ans = maxPartition(s);
+	cout << ans << "\n";
+	return 0;
+}
