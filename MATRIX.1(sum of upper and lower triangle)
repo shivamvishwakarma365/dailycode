@@ -1,0 +1,35 @@
+
+
+class Solution
+{   
+    public:
+    //Function to return sum of upper and lower triangles of a matrix.
+    vector<int> sumTriangles(const vector<vector<int> >& matrix, int n)
+    {
+         int i, j;
+         vector<int>op;
+    int upper_sum = 0;
+    int lower_sum = 0;
+    int r=n;
+    int c=n;
+    for (i = 0; i < r; i++)
+        for (j = 0; j < c; j++) {
+            if (i <= j) {//the main condition
+                upper_sum += matrix[i][j];
+            }
+        }
+    for (i = 0; i < r; i++)
+        for (j = 0; j < c; j++) {
+            if (j <= i) {
+                lower_sum += matrix[i][j];
+            }
+        }
+    op.push_back(upper_sum);
+    op.push_back(lower_sum);
+    
+    return op;
+    }
+
+    
+    
+};
