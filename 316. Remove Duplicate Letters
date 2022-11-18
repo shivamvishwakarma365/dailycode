@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+    int n=s.size();
+    unordered_map<char,bool>visited;
+        unordered_map<char,int>count;
+        for(char a:s){
+            count[a]++;
+        }//taking in the frequency
+        string result="";
+        for(char i:s){
+            count[i]--;
+            if(visited[i])continue;
+            //this condition removes the element if it is going to appear as the program proceeds
+            while(!result.empty() && i<result.back() && count[result.back()]>0){
+                visited[result.back()]=false;
+                result.pop_back();
+            }
+            result+=i;
+            visited[i]=true;//this marks it is visited 
+        }
+        return result;
+    }
+};
