@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+     string ans="";
+        for(char &c:num)
+        {
+            while(ans.size() && ans.back()>c &&k)
+            {
+                ans.pop_back();
+                k--;
+            }
+            if(ans.size()||c!='0')ans.push_back(c);//this if if the element is zero like for the case
+            //10200
+        }
+        while(ans.size()&&k--)// this is for the remaning k if thier is any deletion left
+        {
+            ans.pop_back();
+        }
+        return (ans=="")?"0":ans;   
+    }
+};
