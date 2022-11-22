@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int answer(string& s1,string& s2,int i,int j){
+        if(i==0 || j==0){
+            return 0;
+        }
+        if(s1[i-1]==s2[j-1]){
+            return 1+answer(s1,s2,i-1,j-1);
+        }else{
+            return answer(s1,s2,i,j-1);
+        }
+    }
+    bool isSubsequence(string s, string t) {
+        //simple way and using recursion
+        int n=s.size();
+        int m=t.size();
+        if(m<n)return false;
+        
+        /*for(int i=m-1;i>=0;i--){
+            if(t[i]==s.back())s.pop_back();
+        }
+        */
+         if(answer(s,t,n,m)==n){
+             return true;
+         }else{
+             return false;
+         }
+        
+        
+       // return s.empty();
+        
+        
+        
+        
+        
+    }
+};
