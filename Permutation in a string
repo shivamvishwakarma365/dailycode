@@ -1,0 +1,44 @@
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        //using sliding window approach
+        //two pointers can be used too
+        int k=s1.size();//this is the window size which is fixed type
+        unordered_map<char,int>mp;
+        if(s1.size()>s2.size())return false;
+        for(char a:s1){
+            mp[a]++;
+        }
+        int count=mp.size();//count of the characters
+        int i=0;
+        int j=0;
+        while(j<s2.size()){
+            if(mp.find(s2[j])!=mp.end()){
+                mp[s2[j]]--;
+                if(mp[s2[j]]==0){
+                    count--;
+                }
+            }
+            if(j-i+1<k){
+                j++;  //if the window size smaller we increase it futher 
+            }else if(j-i+1==k){
+                if(count==0){
+                    return true;
+                }
+                if(mp.find(s2[i])!=mp.end()){
+                    mp[s2[i]]++;
+                    if(mp[s2[i]]==1){
+                        count++;//increasing it as if the element in the map becomes zero then it was a case before which was considered
+                    }
+                    
+                }
+                i++;
+                j++;
+                //moving the window from one point to another
+            }
+ 
+        }
+        return false;
+        }
+    };
+    //one can do it using two pointer approach
