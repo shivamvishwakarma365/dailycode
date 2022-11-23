@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string decodeString(string s) {
+        stack<int>numbers;
+        stack<string>characters;
+        string res;
+        //this can be done using one stack or  and recursive approach
+        int num=0;
+        for(char c:s){
+            if(isdigit(c)){
+                num=num*10+(c-'0');
+            }else if(isalpha(c)){
+                res+=c;
+            }else if(c=='['){
+                characters.push(res);
+                numbers.push(num);
+                num=0;
+                res="";
+                
+            }else if(c==']'){
+                string temp=res;
+                for(int i=0;i<numbers.top()-1;++i){
+                    res+=temp;
+                }
+                res=characters.top()+res;
+                characters.pop();
+                numbers.pop();
+            }
+        }
+        return res;
+        
+    }
+};
