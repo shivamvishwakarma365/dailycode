@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> sortEvenOdd(vector<int>& nums) {
+        //this can be done using priority queue
+        int n=nums.size();
+        vector<int>even;
+        vector<int>odd;
+        vector<int>ans;
+        int i=0;//for the even points;
+        while(i<n){
+            even.push_back(nums[i]);
+            i+=2;
+        }
+        int j=1;//for the odd points
+        while(j<n){
+            odd.push_back(nums[j]);
+            j+=2;
+        }
+        //sorting the vectors;
+        sort(even.begin(),even.end());
+        sort(odd.rbegin(),odd.rend());
+        //inserting it in the ans vector 
+        for(int i=0;i<even.size();i++){
+            if(i<even.size())ans.push_back(even[i]);
+            if(i<odd.size())ans.push_back(odd[i]);
+        }
+        return ans;
+        }
+    
+    
+};
