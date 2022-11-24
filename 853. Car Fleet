@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int carFleet(int target, vector<int>& position, vector<int>& speed) {
+        // a normal greedy solution which comprises of comparisions
+        vector<pair<int,int>>ans;
+        for(int i=0;i<speed.size();i++){
+            ans.push_back(make_pair(position[i],speed[i]));
+        }
+        sort(ans.begin(),ans.end());
+        //without using stack can be done using stack too though like
+        //the main thoery can be understood by drawing a graph
+        // we can look for the time the car is taking too reach the target 
+        // if a car has a time lower than a car then it will form a fleet 
+        // so we sort it and traverse it from backwards
+        
+        int count=1;//count the number of fleets
+        int n=speed.size();
+        double avi;
+        double slow=(double)(target-ans[n-1].first)/ans[n-1].second;
+        for(int i=n-2;i>=0;i--){
+            avi=(double)(target-ans[i].first)/(double)ans[i].second;
+            if(avi>slow){
+                count++;
+                slow=avi;
+            }
+        }
+        
+        return count;
+        
+        
+        
+        
+        
+    }
+};
