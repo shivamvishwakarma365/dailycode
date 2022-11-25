@@ -1,0 +1,17 @@
+int countSubstringWithEqualEnds(string s)
+	{
+	    //can be done in brute force method using two loops and do the work
+	    //and no extra space 
+	    int n=s.size();
+	    int count[26]={0};
+	    for(int i=0;i<n;i++){
+	        count[s[i]-'a']++;
+	    }
+	    int result=0;
+	    //combitronics
+	    //the answer depends on the frequencies of the characters of the string letters
+	    for(int i=0;i<26;i++){
+	        result+=count[i]*(count[i]+1)/2;
+	    }
+	    return result;
+	}
