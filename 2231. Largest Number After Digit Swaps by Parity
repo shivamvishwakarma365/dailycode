@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int largestInteger(int num) {
+        //this O(n*n) solution
+        vector<int>arr;
+        int n;
+        while(num!=0){
+            n=num%10;
+            arr.push_back(n);
+            num=num/10;
+        }
+        reverse(arr.begin(),arr.end());
+        int size=arr.size();
+        
+        for(int j=0;j<arr.size();j++){
+            int condition=arr[j]%2;
+            int no=j+1;
+            while(no<arr.size()){
+                if(arr[no]>arr[j] && arr[no]%2==condition){
+                    swap(arr[no],arr[j]);
+                }
+                no++;
+            }
+        }
+        long long int ans=0;
+        for(int i=0;i<arr.size();i++){
+            ans+=arr[i];
+            ans*=10;
+        }
+        return ans/10;
+    }
+};
