@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minimumDifference(vector<int>& nums, int k) {
+        //lets try this using the simple approch
+        //trying  the brute force approach
+        //this is a sliding window question which has the a fixed window size
+        sort(nums.begin(),nums.end());
+        
+        int result=nums[k-1]-nums[0];//setting the minimum difference
+        for(int i=k;i<nums.size();i++){
+            result=min(result,nums[i]-nums[i-k+1]);
+        }
+        return result;
+        
+
+        
+    }
+};
