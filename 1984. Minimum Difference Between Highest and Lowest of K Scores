@@ -11,8 +11,32 @@ public:
             result=min(result,nums[i]-nums[i-k+1]);
         }
         return result;
-        
 
-        
     }
 };
+//uisng the sliding window approach
+
+//time cokplexity both have the same time andf space 
+nlogn time
+anf space constant
+int diff=INT_MAX;
+        sort(nums.begin(),nums.end());
+        
+        int i=0,j=0;
+        
+        while(j<nums.size())
+        {
+            if(j-i+1<k)
+            {
+                j++;
+            }
+            
+            if(j-i+1==k)
+            {
+                diff=min(ans,nums[j]-nums[i]);
+                i++;
+                j++;
+            }
+        }
+               
+         return diff;   
