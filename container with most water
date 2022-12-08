@@ -1,0 +1,29 @@
+class Solution {
+public:
+//can be done using java
+    int maxArea(vector<int>& height) {
+        // this program uses the two pointer approach
+        //two pointer can be used in the sliding approacg
+        int n=height.size();//intialising the size
+        int a=0;//initialisisng the lower limit 
+
+        int b=n-1;
+        int maxi=0;
+        int mini;//checking for the lower part
+        while(a<b){
+            int niche=height[a];
+            int uppar=height[b];
+            mini=min(uppar,niche);
+            maxi=max(maxi,mini*(b-a));
+            if(niche<uppar){
+                a++;
+            }else{
+                b--;
+            }
+        }
+        return maxi;
+        //this is done using two pointer appoarch
+        
+        
+    }
+};
