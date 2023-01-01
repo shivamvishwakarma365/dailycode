@@ -1,0 +1,46 @@
+class Solution {
+public:
+
+    int numSubseq(vector<int>& nums, int target) {
+        //this can be done using backtracking too 
+        //using the concept of pick or not except removing the empty part
+        int mod=1000000007;
+        sort(nums.begin(),nums.end());
+        int n=nums.size()-1;
+        
+        int ans=0;
+        vector<int>answers(nums.size()+1,1);
+        for(int i=1;i<=nums.size();i++){
+            answers[i]=(answers[i-1]*2)%mod;
+
+        }
+        int i=0;
+        int res=0;
+        int j=nums.size()-1;
+         while(i<=j)
+        {
+            if(nums[j]+nums[i]<=target)
+            {
+                res=(res+answers[j-i])%mod;
+                i++;
+            }
+            else
+                j--;
+        }
+        return res;
+        
+        //this part is having overflow dont know why?
+        for(int i=0;i<nums.size();i++){
+            while((nums[i]+nums[n])>target && i<=n){
+                n-=1;
+            }
+            if(nums[i]+nums[n]<=target && i<=n){
+                ans=ans+(answers[n-i])%mod;
+                
+            }
+        }
+        return ans%mod;
+        
+        
+    }
+};
