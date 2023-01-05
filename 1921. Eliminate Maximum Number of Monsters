@@ -24,3 +24,17 @@ public:
         
     }
 };
+//python
+class Solution:
+    def eliminateMaximum(self, dist: List[int], speed: List[int]) -> int:
+        minreach=[]
+        for d,s in zip(dist,speed):
+            minute=math.ceil(d/s)
+            minreach.append(minute)
+        minreach.sort()
+        res=0
+        for minute in range(len(minreach)):
+            if(minute>=minreach[minute]):
+                return res
+            res +=1
+        return res
