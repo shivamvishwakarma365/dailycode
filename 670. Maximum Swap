@@ -1,0 +1,57 @@
+class Solution {
+public:
+    int maximumSwap(int num) {
+        //the brute force approach
+        //this takes around n*n time ans some space
+        string s=to_string(num);
+        int n=s.size();
+/*
+        for(int i=0;i<n;i++){
+            char maxi=s[i];
+            int index1=i;
+            for(int j=i+1;j<n;j++){
+                if(s[j]>=maxi){
+                    maxi=s[j];
+                    index1=j;
+                }
+            }
+             if(maxi>s[i]){
+                    swap(s[index1],s[i]);
+                    break;
+                }
+        }
+        int ans=stoi(s);
+        return ans;
+        */
+        //the good way its done
+        //here it is:
+        string y=s;
+        sort(y.begin(),y.end(),greater<char>());
+        //sorting it in deceasing order if the y and s are same then its already in its highest order
+        //if not then find the position where it in uneven then swap with its
+        //rightmost largest-smallest leftmost
+        int i=0;
+        while(y[i]==s[i] && i<s.size()){
+            i+=1;
+        }
+        if(i==s.size()){
+            return num;
+        }else{
+            int indexway=0;
+            //find the right most position of it as it may contain a duplicate of it forward
+            for(int j=0;j<n;j++){
+                if(s[j]==y[i]){
+                    indexway=j;
+                }
+            }
+            swap(s[indexway],s[i]);
+            return stoi(s);
+        }
+
+
+        
+    }
+};
+//
+//
+has a java approach to it too
