@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int eliminateMaximum(vector<int>& dist, vector<int>& speed) {
+        //greedy approach
+             vector<double> time;
+        int n = dist.size();
+        for(int i = 0; i < n; i++)
+        {
+            time.push_back((double)dist[i]/speed[i]);
+        }
+        sort(time.begin(), time.end());
+        int ans=0;
+        for(int i = 0; i <time.size(); i++)
+        {
+            if(i < time[i])
+            {
+                continue;
+                
+            }
+            else
+                return i;
+        }
+        return time.size();
+        
+    }
+};
