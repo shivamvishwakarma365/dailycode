@@ -1,0 +1,68 @@
+create largest number using an array
+  //creating a function for sort purpose as in custom sort//
+	enumerate kinda does the indexing stuff like index with the list
+	
+	working has been in down--
+	enumerate converts it to indexed tuple inside the so caled list
+# enumerate function
+l1 = ["eat", "sleep", "repeat"]
+s1 = "geek"
+  
+# creating enumerate objects
+obj1 = enumerate(l1)
+obj2 = enumerate(s1)
+  
+print ("Return type:", type(obj1))
+print (list(enumerate(l1)))
+  
+# changing start index to 2 from 0
+print (list(enumerate(s1, 2)))
+Output:
+Return type: 
+[(0, 'eat'), (1, 'sleep'), (2, 'repeat')]
+[(2, 'g'), (3, 'e'), (4, 'e'), (5, 'k')]
+----
+return str(int("".join(nums))) 
+// the join part covert the num into a string then we again convert it to int as to reove the zeros in  the forward part then agian str conversion as per the requirement
+
+PYTHON--
+--------
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        for i,n in enumerate(nums):
+            nums[i]=str(n)
+        def compare(n1,n2):
+            if n1+n2>n2+n1:
+                return -1
+            else:
+                return 1
+        nums=sorted(nums,key=cmp_to_key(compare))
+        return str(int("".join(nums)))
+c++
+--
+class Solution {
+public:
+static bool compare(int a,int b){
+    //creating a function for sort purpose as in custom sort//
+    string name1=to_string(a);
+    string name2=to_string(b);
+    return (name1+name2)>(name2+name1);
+}
+    string largestNumber(vector<int>& nums) {
+        int n=nums.size();
+        sort(nums.begin(),nums.end(),compare);//it is a custom sorting fuction it uses static method though
+        string ans="";
+        for(int a:nums){
+            ans+=to_string(a);
+        }
+        //removing the zeros
+        int i=0;
+        while(i<n-1 && ans[i]=='0'){
+            i++;
+        }
+        return ans.substr(i);
+    }
+}
+
+-----
+java mising
