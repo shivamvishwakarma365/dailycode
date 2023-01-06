@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> mostCompetitive(vector<int>& nums, int k) {
+        //we be done using stack
+        //[3 5 2 6]
+        // 3 5 this can be replaced with 2 6 as it better satisfied the conditions
+        //stack size has be k for the answer
+        //so this is the condition
+        //k-ans.size()<=nums.size()-i-1;
+        int n=nums.size();
+        vector<int>ans;//as a stack
+        for(int i=0;i<nums.size();i++){
+            while(!ans.empty() && ans.back()>nums[i] && k-ans.size()<=n-i-1){
+                ans.pop_back();
+            }
+            if(ans.size()<k){
+                ans.push_back(nums[i]);
+            }
+
+        }
+        return ans;
+
+        
+    }
+};
