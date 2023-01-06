@@ -1,0 +1,38 @@
+c++
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+       
+        return (s.length()==goal.length())&&((s+s).find(goal)!=string::npos)?true:false;//this is an imp line which will be in help i future
+        
+    }
+};
+----------------
+java
+--contains is the gut and length() helps in finfding the size in an array or atsirng
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        String a=s+s;
+        if((s.length()==goal.length()) && (a.contains(goal))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+//python--
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        if len(s)!=len(goal):
+            return False
+
+        a,b=[*s],[*goal]
+        for i in range(len(s)):
+            l=a[0]
+            a.pop(0)
+            a.append(l)
+            if a==b:
+                return True
+        
+        return False
