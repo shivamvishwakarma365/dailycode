@@ -1,0 +1,13 @@
+static long largestPrimeFactor(int n) {
+        int c=2;
+		while(n>1) {
+			if(n%c==0) {
+				n/=c;
+				//just print the prime factor 
+			}else {
+				c++;
+			}
+		}
+		//if thier are many composite numbers then its logn else n
+		return c;
+    }
